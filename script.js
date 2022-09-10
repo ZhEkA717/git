@@ -130,7 +130,7 @@
 
 var items = [1, 2, 3, 4, 5, 6];
 function isEven(n) {
-    return n % 2 == 0
+    return n % 2 == 0;
 }
 
 function partitionOn(pred, items) {
