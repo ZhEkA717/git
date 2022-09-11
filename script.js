@@ -183,15 +183,21 @@ function orderWeight(string) {
        arrays.push([arr[i],sumArr[i]]);
     }
 
-    function sortBySecondEl(a, b) {
-        return a[1] - b[1];
+    function sortByFirstOrSecondEl(a, b) {
+        if (a[0] === b[0]) {
+            return a[1] - b[1];
+        } else {
+            return a[0] - b[0];
+        }
     }
 
-    arrays.sort(sortBySecondEl).forEach(item=>{
+    arrays
+    .sort(sortByFirstOrSecondEl)
+    .forEach(item=>{
         resStr += `${item[0]} `;
     });
 
     return resStr.trim();
 }
 
-orderWeight("103 123 4444 99 2000");
+console.log(orderWeight("103 123 4444 99 2000"));
