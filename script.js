@@ -128,23 +128,70 @@
 // console.log(getMiddle("middle"));
 // console.log(getMiddle("A"));
 
-var items = [1, 2, 3, 4, 5, 6];
-function isEven(n) {
-    return n % 2 == 0;
-}
+// let items = [1, 2, 3, 4, 5, 6];
 
-function partitionOn(pred, items) {
-    let evenMas=[],
-        oddMas=[];
-    for(let i=0; i<items.length;i++){
-        if(pred(items[i])){
-            evenMas.push(items[i]);
-        }else{
-            oddMas.push(items[i]);
-        }
+
+// function isEven(n) {
+//     return n % 2 == 0;
+// }
+
+// function partitionOn(pred, items) {
+//     let evenMas = [],
+//         oddMas = [],
+//         newMas = [];
+//     const itemsLenght = items.length;
+//     for (let i = 0; i < items.length; i++) {
+//         if (pred(items[i])) {
+//             evenMas.push(items[i]);
+//         } else {
+//             oddMas.push(items[i]);
+//         }
+//         delete items[i];
+//     }
+//     newMas = oddMas.concat(evenMas);
+//     for (let i = 0; i < itemsLenght; i++) {
+//         items[i] = newMas[i];
+//     }
+//     items = oddMas.concat(evenMas);
+//     for (let i = 0; i < items.length; i++) {
+//         if (items[i] == items[oddMas.length]) {
+//             return i;
+//         }
+//     }
+//     return items[oddMas.length];
+// }
+// console.log(partitionOn(isEven, items));
+
+// console.log(items);
+
+
+function orderWeight(string) {
+    let arr = string.split(" ");
+    let sumArr = [];
+    let arrays = [];
+    let resStr = "";
+    arr.forEach(item => {
+        let elStrInArr = item.split("").map(el=>+el);
+        const sum = 0;
+
+        sumArr.push(elStrInArr.reduce(
+            (prev,curr) => prev + curr , sum
+        ));
+    });
+
+    for(let i=0; i<arr.length; i++){
+       arrays.push([arr[i],sumArr[i]]);
     }
-    console.log(evenMas);
-    console.log(oddMas);
+
+    function sortBySecondEl(a, b) {
+        return a[1] - b[1];
+    }
+
+    arrays.sort(sortBySecondEl).forEach(item=>{
+        resStr += `${item[0]} `;
+    });
+
+    return resStr.trim();
 }
 
-console.log(partitionOn(isEven,items));
+orderWeight("103 123 4444 99 2000");
