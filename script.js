@@ -1,4 +1,4 @@
-// "use strict";
+"use strict";
 
 // function whatSign(a,whatFun){
 //     let res;
@@ -139,7 +139,7 @@
 //     let evenMas = [],
 //         oddMas = [],
 //         newMas = [];
-//     const itemsLenght = items.length;
+//     const itemsLength = items.length;
 //     for (let i = 0; i < items.length; i++) {
 //         if (pred(items[i])) {
 //             evenMas.push(items[i]);
@@ -149,7 +149,7 @@
 //         delete items[i];
 //     }
 //     newMas = oddMas.concat(evenMas);
-//     for (let i = 0; i < itemsLenght; i++) {
+//     for (let i = 0; i < itemsLength; i++) {
 //         items[i] = newMas[i];
 //     }
 //     items = oddMas.concat(evenMas);
@@ -166,7 +166,7 @@
 
 
 function orderWeight(string) {
-    let arr = string.split(" ");
+    let arr = string.trim().split(" ");
     let sumArr = [];
     let arrays = [];
     let resStr = "";
@@ -183,21 +183,44 @@ function orderWeight(string) {
        arrays.push([arr[i],sumArr[i]]);
     }
 
-    function sortByFirstOrSecondEl(a, b) {
-        if (a[0] === b[0]) {
+    function sortBySecondEl(a, b) {
             return a[1] - b[1];
-        } else {
-            return a[0] - b[0];
-        }
     }
 
-    arrays
-    .sort(sortByFirstOrSecondEl)
-    .forEach(item=>{
+    let sortArr = arrays.sort(sortBySecondEl)
+
+    // for (let i = 0; i < sortArr.length-1; i++) {
+    //     if (sortArr[i][1] === sortArr[i + 1][1]) {
+    //         if (sortArr[i][0] > sortArr[i + 1][0]) {
+    //             let r = sortArr[i];
+    //             sortArr[i] = sortArr[i + 1];
+    //             sortArr[i + 1] = r;
+    //         }
+    //     }   
+    // }
+
+    function BubbleSort(A) {
+        let n = A.length;
+        for (let i = 0; i < n - 1; i++) {
+            for (let j = 0; j < n - 1 - i; j++) {
+                if(A[j][1] === A[j+1][1]){
+                    if (A[j][0] > A[j + 1][0]) {
+                        let t = A[j];
+                        A[j] = A[j + 1];
+                        A[j + 1] = t;
+                    }
+                }
+            }
+        }
+        return A;
+    }
+
+    BubbleSort(sortArr).forEach(item=>{
         resStr += `${item[0]} `;
     });
 
     return resStr.trim();
 }
 
-console.log(orderWeight("103 123 4444 99 2000"));
+console.log(orderWeight("2000 10003 1234000 44444444 9999 11 11 22 123"));
+                        // "11 11 2000 10003 22 123 1234000 44444444 9999"
