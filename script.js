@@ -165,62 +165,269 @@
 // console.log(items);
 
 
-function orderWeight(string) {
-    let arr = string.trim().split(" ");
-    let sumArr = [];
-    let arrays = [];
-    let resStr = "";
-    arr.forEach(item => {
-        let elStrInArr = item.split("").map(el=>+el);
-        const sum = 0;
+// function orderWeight(string) {
+//     let arr = string.trim().split(" ");
+//     let sumArr = [];
+//     let arrays = [];
+//     let resStr = "";
+//     arr.forEach(item => {
+//         let elStrInArr = item.split("").map(el=>+el);
+//         const sum = 0;
 
-        sumArr.push(elStrInArr.reduce(
-            (prev,curr) => prev + curr , sum
-        ));
-    });
+//         sumArr.push(elStrInArr.reduce(
+//             (prev,curr) => prev + curr , sum
+//         ));
+//     });
 
-    for(let i=0; i<arr.length; i++){
-       arrays.push([arr[i],sumArr[i]]);
+//     for(let i=0; i<arr.length; i++){
+//        arrays.push([arr[i],sumArr[i]]);
+//     }
+
+//     function sortBySecondEl(a, b) {
+//             return a[1] - b[1];
+//     }
+
+//     let sortArr = arrays.sort(sortBySecondEl)
+
+
+//     function BubbleSort(A) {
+//         let n = A.length;
+//         for (let i = 0; i < n - 1; i++) {
+//             for (let j = 0; j < n - 1 - i; j++) {
+//                 if(A[j][1] === A[j+1][1]){
+//                     if (A[j][0] > A[j + 1][0]) {
+//                         let t = A[j];
+//                         A[j] = A[j + 1];
+//                         A[j + 1] = t;
+//                     }
+//                 }
+//             }
+//         }
+//         return A;
+//     }
+
+//     BubbleSort(sortArr).forEach(item=>{
+//         resStr += `${item[0]} `;
+//     });
+
+//     return resStr.trim();
+// }
+
+// console.log(orderWeight("2000 10003 1234000 44444444 9999 11 11 22 123"));
+//                         // "11 11 2000 10003 22 123 1234000 44444444 9999"
+
+// let santa = {
+//     sayHoHoHo: function() { console.log('Ho Ho Ho!') },
+//     distributeGifts: function() { console.log('Gifts for all!'); },
+//     goDownTheChimney: function() { console.log('*whoosh*'); }
+// };
+
+
+// function isSantaClausable(obj) {
+//     // TODO
+//     let objKeys = {"sayHoHoHo":1,"distributeGifts":1,"goDownTheChimney":1};
+//     let count = 0;
+//     for(let key in obj){
+//         if( key in objKeys && typeof(obj[key]) === "function"){
+//             count++;
+//         }
+//     }
+
+//     return count==3?true:false;
+// }
+
+// console.log(isSantaClausable(santa));
+
+// class Animal{
+//     constructor(name,type){
+//         this.name = name;
+//         this.type = type;
+//     }
+
+//     toString(){
+//         return `${this.name} is ${this.type}`;
+//     }
+
+// }
+
+// function Animal(name,type){
+//     this.name = name;
+//     this.type = type;
+
+//     this.toString = function(){
+//         return `${this.name} is ${this.type}`;
+//     }
+// }
+
+// let dog = new Animal("Max","dog");
+
+// console.log(dog.toString());
+
+// console.log(dog.type);
+// console.log(dog.name);
+// dog.name = "Lassie";
+// console.log(dog.name)
+
+
+// полифилл Map;
+// Array.prototype.myMap = function (callback) {
+
+//     const newArray = [];
+
+//     for (let i = 0; i < this.length; i++) {
+//         newArray.push(callback(this[i], i, this));
+//     }
+
+//     return newArray;
+// };
+
+// let a = [1,2,3];
+
+// let newArr = a.myMap(item => item*2);
+
+// console.log(newArr);
+// class Animal {
+//     constructor(name, age, legs, species, status) {
+//       this.name = name;
+//       this.age = age;
+//       this.legs = legs;
+//       this.species = species;
+//       this.status = status;
+//     }
+//     introduce() {
+//       return `Hello, my name is ${this.name} and I am ${this.age} years old.`;
+//     }
+//   }
+
+// class Shark extends Animal {
+//     constructor(name, age, status) {
+//         this.name = name;
+//         this.age = age;
+//         this.legs = 0;
+//         this.species = "shark";
+//         this.status = status;
+//     }
+// }
+
+// class Cat extends Animal {
+//     constructor(name, age, status) {
+//         super();
+//         this.name = name;
+//         this.age = age;
+//         this.status = status;
+//         this.legs = 4;
+//         this.species = "cat";
+//     }
+//     introduce() {
+//         return `Hello, my name is ${this.name} and I am ${this.age} years old.  Meow meow!`;
+//     }
+// }
+
+// class Dog extends Animal {
+//     constructor(name, age, status,master) {
+//         super();
+//         this.name = name;
+//         this.age = age;
+//         this.status = status;
+//         this.legs = 4;
+//         this.species = "dog";
+//         this.master = master;   
+//     }
+//     introduce(){
+//         super.introduce();
+//     }
+//     greetMaster(){
+//         return `Hello ${this.master}`;
+//     }
+// }
+
+// class Cube {
+//     constructor(length) {
+//         this.length = length;
+//     }
+
+//     get surfaceArea() {
+//         return 6 * this.length ** 2;
+//     }
+//     get volume() {
+//         return this.length ** 3;
+//     }
+
+//     set surfaceArea(s){
+//         this.length = (s/6) ** (1/2);
+//     }
+//     set volume(v){
+//         this.length = v ** (1/3);
+//     }
+// }
+
+class File {
+    constructor(fullName,contents){
+        this._fullName = fullName;
+        this._fileName = this.getFileName(fullName);
+        this._extension = this.getExtension(fullName);
+        this.contents = contents; 
+        this.count = -1;
     }
-
-    function sortBySecondEl(a, b) {
-            return a[1] - b[1];
-    }
-
-    let sortArr = arrays.sort(sortBySecondEl)
-
-    // for (let i = 0; i < sortArr.length-1; i++) {
-    //     if (sortArr[i][1] === sortArr[i + 1][1]) {
-    //         if (sortArr[i][0] > sortArr[i + 1][0]) {
-    //             let r = sortArr[i];
-    //             sortArr[i] = sortArr[i + 1];
-    //             sortArr[i + 1] = r;
-    //         }
-    //     }   
-    // }
-
-    function BubbleSort(A) {
-        let n = A.length;
-        for (let i = 0; i < n - 1; i++) {
-            for (let j = 0; j < n - 1 - i; j++) {
-                if(A[j][1] === A[j+1][1]){
-                    if (A[j][0] > A[j + 1][0]) {
-                        let t = A[j];
-                        A[j] = A[j + 1];
-                        A[j + 1] = t;
-                    }
-                }
+    
+    getFileName(fullName){
+        let arr = fullName.split("");
+        let newArr = [];
+        for(let i=0; i<arr.length;i++){
+            if(arr[i]!="."){
+                newArr.push(arr[i]);
+            }else{
+                break;
             }
         }
-        return A;
+        return newArr.join("");
+    };
+    getExtension(fullName){
+        let arr = fullName.split("").reverse();
+        let newArr = [];
+        for(let i=0; i<arr.length;i++){
+            if(arr[i]!="."){
+                newArr.push(arr[i]);
+            }else{
+                break;
+            }
+        }
+        return newArr.reverse().join("");
+    };
+
+    get fullName(){
+        return this._fullName;
+    }
+    get fileName(){
+        return this._fileName;
+    }
+    get extension(){
+        return this._extension;
     }
 
-    BubbleSort(sortArr).forEach(item=>{
-        resStr += `${item[0]} `;
-    });
-
-    return resStr.trim();
+    getContents(){
+        return this.contents;
+    }
+    write(newContents){
+        this.contents+=`\n${newContents}`
+    }
+    
+    gets(){
+        let a = this.count;
+        a++;
+        let con = this.contents.split("\n");
+        return can[a];
+    }
+  
 }
 
-console.log(orderWeight("2000 10003 1234000 44444444 9999 11 11 22 123"));
-                        // "11 11 2000 10003 22 123 1234000 44444444 9999"
+var myFile = new File("example.txt", "Line 1\nLine 2\nLine 3\nLine 4\nLine 5");
+console.log(myFile.gets()); // "Line 1"
+console.log(myFile.gets()); // "Line 2"
+console.log(myFile.gets()); // "Line 3"
+console.log(myFile.gets()); // "Line 4"
+console.log(myFile.gets()); // "Line 5"
+console.log(myFile.gets()); // undefined
+console.log(myFile.gets()); // undefined
+console.log(myFile.gets()); // undefined
+
