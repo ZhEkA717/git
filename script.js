@@ -270,22 +270,43 @@
 
 
 // полифилл Map;
-// Array.prototype.myMap = function (callback) {
 
-//     const newArray = [];
+    // Array.prototype.myMap = function (callback,context) {
+    //     let newArray = new Array(this.length);
+    //         for (let i = 0; i < this.length; i++) {
+    //             if(i in this){
+    //                 newArray[i] = callback.apply(context,[this[i], i, this]);
+    //             }
+    //         }
+    //     return newArray;
+    // };
 
-//     for (let i = 0; i < this.length; i++) {
-//         newArray.push(callback(this[i], i, this));
+    // let arr = new Array(3);
+
+    // let newArr = arr.myMap(item=>item*2);
+
+    // console.log(newArr);
+
+// полифилл filter
+
+// Array.prototype.myFilter = function(callback,thisArg){
+//     let newArr = [];
+//     for(let i=0;i<this.length;i++){
+//         if(i in this){
+//             if(callback.apply(thisArg,[this[i],i,this])){
+//                 newArr.push(this[i]);
+//             }
+//         }
 //     }
+//     return newArr;
+// }
+// console.log([2,3,4,5,6,7,8].filter(function(item,i,arr){
+//     arr.push(item);
+//     console.log(arr);
+//     return this[i]==i;
+// },[0,1,2,3,4]));
 
-//     return newArray;
-// };
 
-// let a = [1,2,3];
-
-// let newArr = a.myMap(item => item*2);
-
-// console.log(newArr);
 // class Animal {
 //     constructor(name, age, legs, species, status) {
 //       this.name = name;
@@ -360,74 +381,134 @@
 //         this.length = v ** (1/3);
 //     }
 // }
+// -----------------------------------------------
+// class File {
+//     constructor(fullName,contents){
+//         this.countGets = -1;
+//         this.countGetc= -1;
+//         this._fullName = fullName;
+//         this._filename = this.getFileName(fullName);
+//         this._extension = this.getExtension(fullName);
+//         this.contents = contents; 
+//     }
 
-class File {
-    constructor(fullName,contents){
-        this._fullName = fullName;
-        this._fileName = this.getFileName(fullName);
-        this._extension = this.getExtension(fullName);
-        this.contents = contents; 
-        this.count = -1;
-    }
-    
-    getFileName(fullName){
-        let arr = fullName.split("");
-        let newArr = [];
-        for(let i=0; i<arr.length;i++){
-            if(arr[i]!="."){
-                newArr.push(arr[i]);
-            }else{
-                break;
-            }
+//     getFileName(fullName){
+//         let arr = fullName.split("").reverse();
+//         let newArr = [];
+//         for(let i=0; i<arr.length;i++){
+//             if(arr[i]!="."){
+//                 newArr.push(arr[i]);
+//             }else{
+//                 break;
+//             }
+//         }
+//         return arr.reverse().slice(0,arr.length-1-newArr.length).join("");
+//     };
+//     getExtension(fullName){
+//         let arr = fullName.split("").reverse();
+//         let newArr = [];
+//         for(let i=0; i<arr.length;i++){
+//             if(arr[i]!="."){
+//                 newArr.push(arr[i]);
+//             }else{
+//                 break;
+//             }
+//         }
+//         return newArr.reverse().join("");
+//     };
+
+//     get fullName(){
+//         return this._fullName;
+//     }
+//     get filename(){
+//         return this._filename;
+//     }
+//     get extension(){
+//         return this._extension;
+//     }
+
+//     getContents(){
+//         return this.contents;
+//     }
+//     write(newContents){
+//         if(this.contents){
+//             this.contents+=`/n${newContents}`;
+//         }else{
+//             this.contents+=`${newContents}`;
+//         }
+//     }
+//     gets(){
+//         this.countGets++;
+//         let contextEl = this.contents.split("\n");
+//         return contextEl[this.countGets];
+//     }
+//     getc(){
+//         this.countGetc++;
+//         let contextEl = this.contents.split("");
+//         return contextEl[this.countGetc];
+//     }
+// }
+
+// 
+// полифилл bind()
+// const person = {
+//     name: "Zheka"
+// }
+
+// function info(phone,email){
+//     console.log(`Name: ${this.name}, Phone: ${phone}, Email: ${email}`)
+// }
+
+// info.bind(person)("12345","zheka@mail.ru"); //карированный метод
+// info.bind(person,"12345")("zheka@mail.ru"); //
+// info.bind(person,"12345","zheka@mail.ru")(); //
+
+
+// function bind(fn,context){
+//     const rest = Array.prototype.slice.call(arguments,2); 
+//     console.log(rest);
+//     return function(){
+//         const args = Array.prototype.slice.call(arguments);
+//         return fn.apply(context,rest.concat(args));
+//     }
+// }
+
+// Function.prototype.myBind = function(context){
+//     const fun = this;
+//     const rest = Array.prototype.slice.call(arguments,2); 
+//     return function(){
+//         const args = Array.prototype.slice.call(arguments);
+//         if(this){
+//             return fun.apply(this,rest.concat(args));
+//         }
+//         return  fun.apply(context,rest.concat(args));
+//     }
+// }
+
+// info.myBind(person)("12345","zheka@mail.ru"); //карированный метод
+// info.myBind(person,"12345")("zheka@mail.ru"); //
+// info.myBind(person,"12345","zheka@mail.ru")(); //
+
+
+let object = { 
+    user: { 
+        name: { 
+          first: [ {children: 12},'alex','paul'], 
+          last: 'Snow' 
         }
-        return newArr.join("");
-    };
-    getExtension(fullName){
-        let arr = fullName.split("").reverse();
-        let newArr = [];
-        for(let i=0; i<arr.length;i++){
-            if(arr[i]!="."){
-                newArr.push(arr[i]);
-            }else{
-                break;
-            }
-        }
-        return newArr.reverse().join("");
-    };
+    } 
+};
+let path = 'user.name.first.1.children';
 
-    get fullName(){
-        return this._fullName;
+function find(object, path) {
+    let arr = path.split(".");
+    let a = object[arr[0]];
+    for (let i = 1; i < arr.length; i++) {
+        a=a[arr[i]]
     }
-    get fileName(){
-        return this._fileName;
-    }
-    get extension(){
-        return this._extension;
-    }
-
-    getContents(){
-        return this.contents;
-    }
-    write(newContents){
-        this.contents+=`\n${newContents}`
-    }
-    
-    gets(){
-        let a = this.count;
-        a++;
-        let con = this.contents.split("\n");
-        return can[a];
-    }
-  
+    return a;
 }
 
-var myFile = new File("example.txt", "Line 1\nLine 2\nLine 3\nLine 4\nLine 5");
-console.log(myFile.gets()); // "Line 1"
-console.log(myFile.gets()); // "Line 2"
-console.log(myFile.gets()); // "Line 3"
-console.log(myFile.gets()); // "Line 4"
-console.log(myFile.gets()); // "Line 5"
-console.log(myFile.gets()); // undefined
-console.log(myFile.gets()); // undefined
-console.log(myFile.gets()); // undefined
+console.log(find(object,path));
+
 
