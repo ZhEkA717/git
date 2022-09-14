@@ -271,27 +271,29 @@
 
 // полифилл Map;
 
-    // Array.prototype.myMap = function (callback,context) {
-    //     let newArray = new Array(this.length);
-    //         for (let i = 0; i < this.length; i++) {
-    //             if(i in this){
-    //                 newArray[i] = callback.apply(context,[this[i], i, this]);
-    //             }
-    //         }
-    //     return newArray;
-    // };
+// Array.prototype.myMap = function (callback,context) {
+//     let newArray = new Array(this.length);
+//         for (let i = 0; i < this.length; i++) {
+//             if(i in this){
+//                 newArray[i] = callback.apply(context,[this[i], i, this]);
+//             }
+//         }
+//     return newArray;
+// };
 
-    // let arr = new Array(3);
+// let arr = new Array(3);
 
-    // let newArr = arr.myMap(item=>item*2);
+// let newArr = arr.myMap(item=>item*2);
 
-    // console.log(newArr);
+// console.log(newArr);
 
 // полифилл filter
 
 // Array.prototype.myFilter = function(callback,thisArg){
+//     debugger;
 //     let newArr = [];
-//     for(let i=0;i<this.length;i++){
+//     let arrLength = this.length;
+//     for(let i=0;i<arrLength;i++){
 //         if(i in this){
 //             if(callback.apply(thisArg,[this[i],i,this])){
 //                 newArr.push(this[i]);
@@ -300,9 +302,8 @@
 //     }
 //     return newArr;
 // }
-// console.log([2,3,4,5,6,7,8].filter(function(item,i,arr){
+// console.log([2,3,4,5,6,7,8].myFilter(function(item,i,arr){
 //     arr.push(item);
-//     console.log(arr);
 //     return this[i]==i;
 // },[0,1,2,3,4]));
 
@@ -490,25 +491,152 @@
 // info.myBind(person,"12345","zheka@mail.ru")(); //
 
 
-let object = { 
-    user: { 
-        name: { 
-          first: [ {children: 12},'alex','paul'], 
-          last: 'Snow' 
-        }
-    } 
-};
-let path = 'user.name.first.1.children';
+// let object = { 
+//     user: { 
+//         name: { 
+//           first: [ {children: 12},'alex','paul'], 
+//           last: 'Snow' 
+//         }
+//     } 
+// };
+// let path = 'user.name.first.0.children';
 
-function find(object, path) {
-    let arr = path.split(".");
-    let a = object[arr[0]];
-    for (let i = 1; i < arr.length; i++) {
-        a=a[arr[i]]
-    }
-    return a;
-}
+// function find(object, path) {
+//     let arr = path.split(".");
+//     let a = object[arr[0]];
+//     for (let i = 1; i < arr.length; i++) {
+//         if(a){
+//             a=a[arr[i]]
+//         }else{
+//             return;
+//         }
+//     }
+//     return a;
+// }
 
-console.log(find(object,path));
+// console.log(find(object,path));
 
+// const date = "Wed Sep 14 2022 9:00:00";
+
+// function handAngle (date) {
+//     let time = new Date(date),
+//         second = time.getSeconds(),
+//         minute = time.getMinutes(),
+//         hour = time.getHours();
+
+//     let positionMinuteArrow = minute*6,
+//         positionHourArrow = hour*30 + (minute*60)*(1/120);
+//     let angle = Math.abs(positionHourArrow-positionMinuteArrow)*(Math.PI/180);
+// 	return angle>Math.PI?2*Math.PI-angle:angle;
+// }
+
+// console.log(handAngle(date));
+
+// function d2h(d) {
+//     return d.toString(16);
+// }
+
+// function h2d(h) {
+//     return parseInt(h, 16);
+// }
+
+// let colors = ["#00FF00", "#FFFF00", "#01130F"];
+
+// function brightest(colors) {
+//     let arrMaxBright = [];
+//     for(let i =0; i< colors.length; i++){
+//         let color = colors[i];
+//         let r = parseInt(color.substring(1,3),16),
+//             g = parseInt(color.substring(3,5),16),
+//             b = parseInt(color.substring(5,7),16);
+//         let maxBright = Math.max(r,g,b);
+//         arrMaxBright.push([color,maxBright]);
+//     }
+
+//     let sortArr = arrMaxBright.sort((a,b)=>{
+//         return a[1]==b[1]?a[1]:b[1]-a[1];
+//     })
+//     return sortArr[0][0];
+// }
+
+// console.log(brightest(colors));
+
+// class Person {
+//     constructor(firstName, lastName) {
+//         this.firstName = firstName;
+//         this.lastName = lastName;
+//     }
+
+//     getName() {
+//         return this.firstName + ' ' + this.lastName;
+//     }
+// }
+
+
+
+// Object.defineProperty(Person.prototype, "name", {
+//     get: function () {
+//         return `${this.firstName} ${this.lastName}`
+//     },
+//     set: function (c) {
+//         this.firstName = c.split(" ")[0]
+//         this.lastName = c.split(" ")[1]
+//     }
+// });
+
+
+// let user = new Person("Zheka","Grushevskiy");
+
+// console.log(user.getName());
+// console.log(user.name);
+// user.name = "sdfsdf asdad";
+// console.log(user.name);
+
+// Array.prototype.square = function(){
+//     return this.map(item=>Math.pow(item,2));
+// }
+// Array.prototype.cube = function(){
+//     return this.map(item=>Math.pow(item,3));
+// }
+// Array.prototype.average = function(){
+//     const initValue = 0;
+//     return this.length?this.reduce((curr,next)=>curr+next,initValue)/this.length:NaN;
+// }
+// Array.prototype.sum = function(){
+//     const initValue = 0;
+//     return this.reduce((curr,next)=>curr+next,initValue);
+// }
+// Array.prototype.even = function(){
+//     const initValue = 0;
+//     return this.filter(item=>!(item%2));
+// }
+// Array.prototype.odd = function(){
+//     const initValue = 0;
+//     return this.filter(item=>item%2);
+// }
+
+// console.log([1,2,3,4,5].square());
+// console.log([1,2,3,4,5].cube());
+// console.log([1,2,3,4,5].average());
+// console.log([1,2,3,4,5].sum());
+// console.log([1,2,3,4,5].even());
+// console.log([1,2,3,4,5].odd());
+// полифил reduce
+// Array.prototype.myReduce = function (callback, initValue) {
+//     let acc = arguments.length >= 2 ? initValue : this[0];
+//     // если аргумент передали =>присваиваем в аккумулятор
+//     // если нет => присваиваем первый элемент массива
+//     let isStart = arguments.length >= 2 ? 0 : 1;
+//     // если initValue => начинаем перебор c 0-го индекса
+//     // если не передали => начинаем перебор с 1-го индекса
+
+//     for (let i = isStart; i < this.length; i++) {
+//         acc = callback(acc, this[i], i, this);
+//     }
+
+//     return acc;
+// }
+
+  
+// console.log([1,2,3].myReduce( function(sum, next){return sum+next}, 0)); 
 
