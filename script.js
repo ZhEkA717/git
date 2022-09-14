@@ -640,3 +640,56 @@
   
 // console.log([1,2,3].myReduce( function(sum, next){return sum+next}, 0)); 
 
+
+// function generateName() {
+//     let randomStr = "";
+//     const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+//         random6characters=6;
+//     for ( var i = 0; i < random6characters; i++ ) {
+//         randomStr += alphabet[Math.round(Math.random()*alphabet.length)]
+//    }
+//    return randomStr;
+// }
+
+// console.log(generateName());
+
+var Cat = (function (name,weight) {
+    return function(name,weight){
+        this.name = name;
+        this.weight = weight;
+    }
+
+}());
+
+
+// Object.defineProperties(Cat.prototype,{
+//     "name":{
+//         value:true,
+//         writable:true
+//     },
+//     "weught":{
+//         value:true,
+//         writable:true
+//     }
+// });
+
+let garfield = new Cat('garfield', 25);
+let felix = new Cat('felix', 15);
+
+Cat.prototype.averageWeight = function(){
+    
+}
+
+console.log(garfield.averageWeight());
+
+
+
+
+
+
+
+
+
+
+
+
