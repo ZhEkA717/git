@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-// // "use strict";
-=======
-"use strict";
->>>>>>> 4455179929ea294c5c075890f412d11127d865e4
 
 // // function whatSign(a,whatFun){
 // //     let res;
@@ -187,13 +182,6 @@
 //        arrays.push([arr[i],sumArr[i]]);
 //     }
 
-<<<<<<< HEAD
-//     function sortByFirstOrSecondEl(a, b) {
-//         if (a[0] === b[0]) {
-//             return a[1] - b[1];
-//         } else {
-//             return a[0] - b[0];
-=======
 // function zero(a) {
 //     const whatFun = 0;
 //     if(a){
@@ -334,7 +322,7 @@
 //     for (let i = 0; i < items.length; i++) {
 //         if (items[i] == items[oddMas.length]) {
 //             return i;
->>>>>>> 4455179929ea294c5c075890f412d11127d865e4
+
 //         }
 //     }
 
@@ -347,9 +335,6 @@
 //     return resStr.trim();
 // }
 
-<<<<<<< HEAD
-// console.log(orderWeight("103 123 4444 99 2000"));
-=======
 // console.log(items);
 
 
@@ -845,7 +830,7 @@ var Cat = (function (name,weight) {
     return function(name,weight){
         this.name = name;
         this.weight = weight;
-    }
+    };
 
 }());
 
@@ -866,19 +851,7 @@ let felix = new Cat('felix', 15);
 
 Cat.prototype.averageWeight = function(){
     
-}
+};
 
 console.log(garfield.averageWeight());
 
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> 4455179929ea294c5c075890f412d11127d865e4
