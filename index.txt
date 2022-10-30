@@ -3,3 +3,5 @@ Some text
 New change:
 
 with tests;
+
+1 commit
